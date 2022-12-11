@@ -1,13 +1,16 @@
 import pytest
-import requests
-
-from data.data_test import get_data_coordinates
-# import allure
+from data.data_test import open_file_coordinates_and_address, url_lat_lon, url_address
+import allure
 
 
-@pytest.mark.parametrize('data', get_data_coordinates())
-def test_test(data):
-    assert data == 'stop', data
+@pytest.mark.parametrize('coordinates',
+                         [open_file_coordinates_and_address('data/coordinates.json',
+                          url_lat_lon(lat="-22.9519173", lon="-43.2104585"), 'data/coordinates.json')])
+@pytest.mark.parametrize('address',
+                         [open_file_coordinates_and_address('data/address.json',
+                          url_address(), 'data/address.json')])
+def test_data(coordinates, address):
+    assert address == coordinates
 
 
 # @allure.id('001')
