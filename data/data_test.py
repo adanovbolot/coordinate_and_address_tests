@@ -16,10 +16,9 @@ def url_address(address):
 
 
 def file_write(url, file_name):
-    jsondata = requests.get(url).json()[0] #изменить
-    result = jsondata['display_name'], jsondata['lat'], jsondata['lon'], jsondata['place_id']
-    with open(file_name, 'w') as outfile:
-        json.dump(result[0], outfile)
+    jsondata = requests.get(url).json()
+    with open(file_name, 'w', encoding='utf8') as outfile:
+        return json.dump(jsondata, outfile, ensure_ascii=False)
 
 
 def open_file_coordinates_and_address(file, url, file_name):
@@ -30,3 +29,13 @@ def open_file_coordinates_and_address(file, url, file_name):
         file_write(url, file_name)
         with open(file) as f:
             return json.load(f)
+
+
+def get_example_coordinates():
+    return open_file_coordinates_and_address('data/example_coordinates.json', url_lat_lon(
+        lat="-22.9519173", lon="-43.2104585"), 'data/example_coordinates.json')
+
+
+def get_example_address():
+    return open_file_coordinates_and_address('data/example_address.json', url_address('Статуя Христа Искупителя'), 'data/example_address.json')
+
