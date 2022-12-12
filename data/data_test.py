@@ -16,7 +16,7 @@ def url_address(address):
 
 
 def file_write(url, file_name):
-    jsondata = requests.get(url).json()
+    jsondata = requests.get(url).json()[0] #изменить
     result = jsondata['display_name'], jsondata['lat'], jsondata['lon'], jsondata['place_id']
     with open(file_name, 'w') as outfile:
         json.dump(result[0], outfile)
