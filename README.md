@@ -7,12 +7,10 @@
 
 Для запуска теста:
      
-    pytest -s -v tests/test_api_get_location.py
-
+    pytest -vv -s tests/test_api_get_location.py && pytest --alluredir=allure-report && allure serve allure-report
 # TESTCASE
 test_coordinates_and_address
 
-    идентификатор тест-кейса - 001
     Название - Сравнить данные из адреса и координат
     шаги - тест кейса
         Описание функции: open_file_coordinates_and_address

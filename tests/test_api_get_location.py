@@ -5,6 +5,7 @@ import allure
 
 
 @allure.id('001')
+@pytest.mark.ADDRESS
 @allure.title('Сравнить данные из адреса > координаты')
 @pytest.mark.parametrize('address',
                          [open_file_coordinates_and_address('data/address.json',
@@ -21,6 +22,7 @@ def test_address(example, address):
 
 
 @allure.id('002')
+@pytest.mark.COORDINATES
 @allure.title('Сравнить данные из координат > адрес')
 @pytest.mark.parametrize('coordinates',
                          [open_file_coordinates_and_address('data/coordinates.json',
